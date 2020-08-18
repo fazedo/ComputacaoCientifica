@@ -6,7 +6,7 @@ A GSL (GNU Scientific Library) é uma biblioteca livre para C e C++ com milhares
 
 Vamos começar trabalhando com as rotinas de integração numérica: https://www.gnu.org/software/gsl/doc/html/integration.html. O uso das rotinas de integração exigem a inclusão do pacote \verb|gsl_integration.h|.
 
-Uma das rotinas mais simplesde integração é a \verb|gsl_integration_qng|. O nome da rotina tem um significado: 
+Uma das rotinas mais simplesde integração é a \verb|gsl_integration_qng|. O nome da rotina tem um significado:
 \begin{itemize}
  \item \verb|q| $\rightarrow$ quadrature routine
  \item \verb|n| $\rightarrow$ non-adaptive integrator
@@ -14,8 +14,8 @@ Uma das rotinas mais simplesde integração é a \verb|gsl_integration_qng|. O n
 \end{itemize}
 A sintaxe dessa rotina é:
 \begin{verbatim}
-int gsl_integration_qng(const gsl_function * f, double a, double b, double epsabs, double epsrel, 
-double * result, double * abserr, size_t * neval) 
+int gsl_integration_qng(const gsl_function * f, double a, double b, double epsabs, double epsrel,
+double * result, double * abserr, size_t * neval)
 \end{verbatim}
 onde
 \begin{itemize}
@@ -106,7 +106,7 @@ A rotina autoadaptativa mais simples é a \verb|gsl_integration_qag|:
 \end{itemize}
 Ela consiste em dividir o intervalo de integração ao meio e, depois, cada um dos subintervalos ao meio outra vez, até a convergência. A sintaxe é
 \begin{verbatim}
-int gsl_integration_qag(const gsl_function * f, double a, double b, double epsabs, double epsrel, 
+int gsl_integration_qag(const gsl_function * f, double a, double b, double epsabs, double epsrel,
 size_t limit, int key, gsl_integration_workspace * workspace, double * result, double * abserr)
 \end{verbatim}
 onde
@@ -124,14 +124,14 @@ onde
  \subitem \verb|GSL_INTEG_GAUSS41 (key = 4)|;
  \subitem \verb|GSL_INTEG_GAUSS51 (key = 5)|;
  \subitem \verb|GSL_INTEG_GAUSS61 (key = 6)|;
- \item \verb|* workspace| é o espaço na memória para dividir o intervalo e recalcular a integral; 
+ \item \verb|* workspace| é o espaço na memória para dividir o intervalo e recalcular a integral;
  \item \verb|result| é o resultado da integral
  \item \verb|abserr| estimativa do erro absoluto;
 \end{itemize}
 \begin{ex}\label{ex_gls_int}
 Calcule a integral
 $$
-\int_0^1\frac{1}{\mu}e^{-\frac{r}{\mu} }d\mu 
+\int_0^1\frac{1}{\mu}e^{-\frac{r}{\mu} }d\mu
 $$
 para $r=0.5$ e $r=1$.
 \end{ex}
@@ -210,12 +210,12 @@ void gsl_integration_glfixed_table_free(gsl_integration_glfixed_table * t)
 \end{verbatim}
 A primeira função calcula as abscissas e pesos da quadratura de Gauss-Legendre com $n$ pontos. A segunda libera o espaço alocado na memória. A terceira função tem a sintaxe
 \begin{verbatim}
-double gsl_integration_glfixed(const gsl_function * f, double a, double b, const 
+double gsl_integration_glfixed(const gsl_function * f, double a, double b, const
 gsl_integration_glfixed_table * t)
 \end{verbatim}
 onde o retorno da função é o valor da integral no intervalo $[a,b]$ usando os pesos e abscissas salvos na tabela \verb|t|. A última função tem sintaxe
 \begin{verbatim}
-int gsl_integration_glfixed_point(double a, double b, size_t i, double * xi, double * wi, const 
+int gsl_integration_glfixed_point(double a, double b, size_t i, double * xi, double * wi, const
 gsl_integration_glfixed_table * t)
 \end{verbatim}
 onde
@@ -307,7 +307,7 @@ void main()
 I(0,\mu)&=B_0, & &\mu>0,\\
 I(L,\mu)&=B_L, &\quad &\mu<0.
 \end{alignat*}
-Nesse modelo, $I(y,\mu)$ é uma intensidade radiativa, 
+Nesse modelo, $I(y,\mu)$ é uma intensidade radiativa,
 $$
 \mathcal{I}(y)=\frac{1}{2}\int_{-1}^1 I(y,\mu)d\mu
 $$
@@ -319,7 +319,7 @@ Começamos discretizando à variável angular $\mu$ com um método chamado de Or
 I_i(0)&=B_0, & &\mu_i>0,\\
 I_i(L)&=B_L, &\quad &\mu_i<0,
 \end{alignat*}
-onde $i=-M,...,M$. Agora, separaramos o sistema de EDO's em dois: um para $\mu_i<0$ e outro para $\mu_i>0$. Portanto, 
+onde $i=-M,...,M$. Agora, separaramos o sistema de EDO's em dois: um para $\mu_i<0$ e outro para $\mu_i>0$. Portanto,
 \begin{alignat*}{3}
 -\mu_i\frac{dI_{-i}}{d y}+\lambda I_{-i} &=\frac{\sigma}{2}\sum_{j=1}^{M}\omega_j(I_{-j}+I_{j})+Q_{- i}, &\quad &i=1,2,...,M,\\
 I_{-i}(L)&=B_L, &\quad &i=1,2,...,M,
@@ -359,7 +359,7 @@ Para implementar esse algoritmo, fazemos algumas considerações:
 \begin{itemize}
  \item É necessário entender o algoritmo antes de começar a programar. Embora seja uma questão óbvia, a ansiedade pode nos trair.
  \item É importante pensar na estrutura do código antes de programar: tipo das principais variáveis, formas de armazenamento (ponteiros, matrizes), variáveis globais, estruturas, funções, pacotes, etc.
- \item Não é indicado programar tudo de uma só vez. Faça por pedaços e valide cada função independentemente. 
+ \item Não é indicado programar tudo de uma só vez. Faça por pedaços e valide cada função independentemente.
  \item Compile o código seguidamente para não acumular erros de compilação.
 \end{itemize}
 
@@ -385,13 +385,13 @@ double GL()
   gsl_integration_glfixed_table_free(table);
 }
 double teste(double x)
-{ 
+{
   return x*x;
 }
 void main()
 {
-  int i; 
-  if (((x=malloc(sizeof(double)*M))==NULL)||((w=malloc(sizeof(double)*M))==NULL)) 
+  int i;
+  if (((x=malloc(sizeof(double)*M))==NULL)||((w=malloc(sizeof(double)*M))==NULL))
   {
   printf("Erro ao alocar memória");
   return;
@@ -428,13 +428,13 @@ double GL()
 void main()
 {
   int i;
-  double **I; 
-  if (((x=malloc(sizeof(double)*2*M))==NULL)||((w=malloc(sizeof(double)*2*M))==NULL)) 
+  double **I;
+  if (((x=malloc(sizeof(double)*2*M))==NULL)||((w=malloc(sizeof(double)*2*M))==NULL))
   {
   printf("Erro ao alocar memória");
   return;
   }
-  if ((I = calloc(N+1,sizeof(double)))==NULL) 
+  if ((I = calloc(N+1,sizeof(double)))==NULL)
   {
   printf("Erro ao alocar memória");
   return;
@@ -444,7 +444,7 @@ void main()
   {
   printf("Erro ao alocar memória");
   return;
-  }  
+  }
   GL(x,w);
 }
 \end{verbatim}
@@ -483,8 +483,8 @@ void main(void)
 {
 
   int i,k,n;
-  double **I,*II; 
-  if (((mu=malloc(sizeof(double)*M))==NULL)||((w=malloc(sizeof(double)*M))==NULL)) 
+  double **I,*II;
+  if (((mu=malloc(sizeof(double)*M))==NULL)||((w=malloc(sizeof(double)*M))==NULL))
   {
   printf("Erro ao alocar memória");
   return;
@@ -500,7 +500,7 @@ void main(void)
   printf("Erro ao alocar memória");
   return;
   }
-  if ((I = calloc(N+1,sizeof(double)))==NULL) 
+  if ((I = calloc(N+1,sizeof(double)))==NULL)
   {
   printf("Erro ao alocar memória");
   return;
@@ -534,7 +534,7 @@ void main(void)
       }
       if (k%200==0) printf("II(%d)=%f\n",k,II[k]);
     }
-  
+
     //Recorrência
     for (i=0;i<M;i++)
     {
@@ -561,7 +561,7 @@ void main(void)
 Para validar usamos resultados de artigos científicos, que fornecem dados tais como dessa tabela:
 \begin{table}[ht]
 \centering
-\caption{Valores calculados para $\int_{-1}^1I(y,\mu)d\mu$ quando $Q\left(y\right)=e^{-y}$, $\lambda'=\sigma'=1$ e $B_0=B_L=1$, com $L=1$.}{\vspace{0.1cm}}
+%\caption{Valores calculados para $\int_{-1}^1I(y,\mu)d\mu$ quando $Q\left(y\right)=e^{-y}$, $\lambda'=\sigma'=1$ e $B_0=B_L=1$, com $L=1$.}{\vspace{0.1cm}}
 \label{tab1}
 \begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
@@ -572,11 +572,11 @@ DD \& Clenshaw-Curtis         & 3.514748 & 4.193471 & 4.307005 & 4.162777 & 3.82
 \end{tabular}
 \end{table}
 
-Naturalmente, o código pode ser melhorado. Por exemplo, podemos estabelecer um critério de convergência para o processo iterativo.  
+Naturalmente, o código pode ser melhorado. Por exemplo, podemos estabelecer um critério de convergência para o processo iterativo.
 
 \section{GSL - matrizes e vetores}
 
-Para utilizar os pacotes de algebra linear, é necessário armazenar os vetores e matrizes no formato gsl. Portanto, começamos introduzindo as funções do gsl para manipulação de vetores e matrizes que estão nos pacotes \verb|gsl_vector.h| e \verb|gsl_vector.h|, respectivamente.  
+Para utilizar os pacotes de algebra linear, é necessário armazenar os vetores e matrizes no formato gsl. Portanto, começamos introduzindo as funções do gsl para manipulação de vetores e matrizes que estão nos pacotes \verb|gsl_vector.h| e \verb|gsl_vector.h|, respectivamente.
 \begin{itemize}
  \item \verb|gsl_vector * gsl_vector_alloc(size_t n)| aloca um vetor de tamanho $n$ e retorna um ponteira para essa estrutura;
  \item \verb|gsl_vector * gsl_vector_calloc(size_t n)| aloca um vetor de tamanho $n$ com todas posições nulas;
@@ -624,27 +624,27 @@ void main(void)
   printf("\n");
   for (i=0;i<3;i++) for (j=0;j<3;j++) gsl_matrix_set(A, i,j, i*j);
   for (i=0;i<3;i++) for (j=0;j<3;j++) gsl_matrix_set(B, i,j, exp(-i*j));
-  for (i=0;i<3;i++) 
+  for (i=0;i<3;i++)
   {
-    for (j=0;j<3;j++) 
+    for (j=0;j<3;j++)
     {
       printf("A[%d,%d]=%f  ",i,j,gsl_matrix_get(A,i,j));
     }
     printf("\n");
   }
   printf("\n");
-  for (i=0;i<3;i++) 
+  for (i=0;i<3;i++)
   {
-    for (j=0;j<3;j++) 
+    for (j=0;j<3;j++)
     {
       printf("B[%d,%d]=%f  ",i,j,gsl_matrix_get(B,i,j));
     }
     printf("\n");
   }
   gsl_matrix_add(A, B);
-  for (i=0;i<3;i++) 
+  for (i=0;i<3;i++)
   {
-    for (j=0;j<3;j++) 
+    for (j=0;j<3;j++)
     {
       printf("A[%d,%d] + B[%d,%d]=%f  ",i,j,i,j,gsl_matrix_get(A,i,j));
     }
@@ -672,8 +672,8 @@ double norma_dif_2(gsl_vector *x,gsl_vector *y)
   int i;
   gsl_vector_sub(x, y);
   double norma2=0;
-  for (i=0;i<3;i++) norma2+=(gsl_vector_get(x,i))*(gsl_vector_get(x,i)); 
-  return sqrt(norma2);	
+  for (i=0;i<3;i++) norma2+=(gsl_vector_get(x,i))*(gsl_vector_get(x,i));
+  return sqrt(norma2);
 }
 void Iteracao(gsl_vector *x_antigo,gsl_vector *x_atual)
 {
@@ -695,7 +695,7 @@ void Jacobi(double tolerancia,gsl_vector *x_atual)
     if (norma_dif_2(x_antigo,x_atual)<tolerancia) controle--;
     else controle=3;
     gsl_vector_memcpy(x_antigo,x_atual);
-    printf("x=%f, y=%f, z=%f\n",gsl_vector_get(x_atual,0),gsl_vector_get(x_atual,1),gsl_vector_get(x_atual,2));	
+    printf("x=%f, y=%f, z=%f\n",gsl_vector_get(x_atual,0),gsl_vector_get(x_atual,1),gsl_vector_get(x_atual,2));
   }
   gsl_vector_free(x_antigo);
   return;
@@ -728,7 +728,7 @@ O gsl resolve problemas em álgebra linear por diversos métodos. Aqui nós vamo
 3x+y+z&=&1\\
 -x-4y+2z&=&2\\
 -2x+2y+5z&=&3
-\end{eqnarray*} 
+\end{eqnarray*}
 usando decomposição QR da biblioteca gsl.
 \end{ex}
 
@@ -776,7 +776,7 @@ O comando
 \end{itemize}
 
 \begin{ex}
-Implemente um código para calcular os coeficientes de uma reta que melhor se ajusta aos pontos: $(0,1)$,$(1,0.5)$, $(2,-0.2)$, $(3,-0.7)$.   
+Implemente um código para calcular os coeficientes de uma reta que melhor se ajusta aos pontos: $(0,1)$,$(1,0.5)$, $(2,-0.2)$, $(3,-0.7)$.
 \end{ex}
 Supondo que a reta tenha equação $y=ax+b$, temos
 \begin{eqnarray}
@@ -872,10 +872,10 @@ possui a seguinte versão discreta
               0&\cdots&0&0&0& -\frac{1}{h}&10+\frac{1}{h}
        \end{array}
 \right]\left[\begin{array}{c}
-             u_1\\u_2\\u_3 \\ \vdots\\ u_{N-1}\\u_N 
+             u_1\\u_2\\u_3 \\ \vdots\\ u_{N-1}\\u_N
              \end{array}
 \right]=\left[\begin{array}{c}
-             500\\200e^{-(x_2-1)^2}\\200e^{-(x_3-1)^2} \\ \vdots\\ 200e^{-(x_{N-1}-1)^2}\\1 
+             500\\200e^{-(x_2-1)^2}\\200e^{-(x_3-1)^2} \\ \vdots\\ 200e^{-(x_{N-1}-1)^2}\\1
              \end{array}
 \right]
 \end{equation*}
@@ -899,14 +899,14 @@ main (void)
   int i,j;
   //malha
   gsl_vector *x=gsl_vector_alloc(N);
-  for (i=0;i<N;i++) gsl_vector_set(x,i,i*h);  
+  for (i=0;i<N;i++) gsl_vector_set(x,i,i*h);
   for (i=0;i<N;i++) printf("x[%d] = %f\n",i,gsl_vector_get(x,i));
-  
+
   //sistema
   gsl_vector_set(d,0,15-1/h);
   gsl_vector_set(e,0,1/h);
   gsl_vector_set(b,0,500);
-  for (i=1;i<N-1;i++) 
+  for (i=1;i<N-1;i++)
   {
     gsl_vector_set(d,i,2/(h*h));
     gsl_vector_set(e,i,-1/(h*h)+1/(2*h));
