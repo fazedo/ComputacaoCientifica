@@ -44,6 +44,7 @@ main.html: main.tex
 	cp config-html.knd config.knd
 	mkdir -p html
 	latex main
+  bibtex main
 	latex main
 	latex main
 	mk4ht htlatex main "myconfig,3,notoc*" "" "-d./html/"
@@ -51,8 +52,7 @@ main.html: main.tex
 
 .PHONY: clean
 
-clean: 
-	rm -rf */*/*.aux */*/*.log */*/*.out */*/*.toc */*/*.bbl */*/*.idx */*/*.ilg */*/*.ind */*/*.blg */*/*.backup 
-	rm -rf */*.aux */*.log */*.out */*.toc */*.bbl */*.idx */*.ilg */*.ind */*.blg */*.backup 
+clean:
+	rm -rf */*/*.aux */*/*.log */*/*.out */*/*.toc */*/*.bbl */*/*.idx */*/*.ilg */*/*.ind */*/*.blg */*/*.backup
+	rm -rf */*.aux */*.log */*.out */*.toc */*.bbl */*.idx */*.ilg */*.ind */*.blg */*.backup
 	rm -f *.aux *.log *.out *.toc *.bbl *.idx *.ilg *.ind *.blg *.backup *.html
-
